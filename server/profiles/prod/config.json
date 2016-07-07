@@ -1,0 +1,14 @@
+{
+    "env": "local",
+
+    "mysql": {
+        "host" : "localhost",
+        "user" : "root",
+        "password" : "root",
+        "database" : "testdb",
+        "port" : 3306,
+        "writeLog" : false
+    },
+
+    "feUrl": ""
+}
