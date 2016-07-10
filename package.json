@@ -1,14 +1,14 @@
 {
-  "name": "qreport",
+  "name": "gulp-webpack-node",
   "version": "1.0.0",
-  "description": "QReport数据展示平台",
+  "description": "gulp-webpack-node project template.",
   "scripts": {
     "init": "npm install --registry https://registry.npm.taobao.org",
-    "start": "node ./app.js",
+    "start": "node ./app.js"
   },
   "repository": {
     "type": "git",
-    "url": "git@gitlab.corp.qunar.com:des/qreport.git"
+    "url": "https://github.com/functions/gulp-webpack-node.git"
   },
   "jshintConfig": {
     "esnext": true
@@ -41,8 +41,6 @@
     "jsx-loader": "^0.13.2",
     "log": "^1.4.0",
     "mysql": "^2.10.2",
-    "node-annotation": "0.0.1",
-    "node-annotation-extend": "0.0.1",
     "node-sass": "^3.8.0",
     "promise": "^7.1.1",
     "react": "0.14.6",

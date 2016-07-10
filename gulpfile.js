@@ -5,38 +5,20 @@ var clean = require('gulp-clean');
 /**************************
  *          webpack       *
  **************************/
-gulp.task('webpack', ['clean'], function() {
+gulp.task('webpack', function() {
     var webpackConfig = require('./webpack.config');
     var gulpWebpack = require('gulp-webpack');
 
     return gulp
-        .src('prd')
+        .src('build')
         .pipe(clean())
         .pipe(gulpWebpack(webpackConfig))
-        .pipe(gulp.dest('./prd'));
-});
-/**************************
- *          clean         *
- **************************/
-gulp.task('clean', function(){
-    return gulp
-        .src(Path.join('src', 'node_modules'))
-        .pipe(clean());
-});
-/**************************
- *          libDev        *
- **************************/
-gulp.task('libDev', ['clean'], function() {
-    //load concat the library
-    //加快开发模式下模块编译的速度，提前把第三方库生成好
-    return gulp
-        .src(Path.join('src', 'development', '**', '*.*'))
-        .pipe(gulp.dest(Path.join('src', 'node_modules')));
+        .pipe(gulp.dest('./build'));
 });
 /**************************
  *    webpack-dev-server  *
  **************************/
-gulp.task('webpack-dev-server', ['libDev'], function() {
+gulp.task('webpack-dev-server', function() {
 
     //start webpack develop server
     var webpackConfig = require('./webpack.dev.config');

@@ -22,21 +22,21 @@ module.exports = {
     //获取项目入口js文件
     entry: {
         //添加入口，以及HMR inline
-        libs: webpackHMR.concat('./public/js/common.js'),
-        index: webpackHMR.concat('./public/js/index.js'),
-        admin: webpackHMR.concat('./public/js/admin.js')
+        libs: webpackHMR.concat('./static/js/common.js'),
+        index: webpackHMR.concat('./static/js/index.js'),
+        admin: webpackHMR.concat('./static/js/admin.js')
     },
     output: {
         //文件输出目录
-        path: Path.join(__dirname, 'prd'),
+        path: Path.join(__dirname, 'build'),
         //用于配置文件发布路径，如CDN或本地服务器
-        publicPath: '/prd/',
+        publicPath: '/static/',
         //根据入口文件输出的对应多个文件名
         filename: '[name].js'
     },
     resolve: {
         alias: {
-            'Styles': Path.join(__dirname, 'public', 'style')
+            'Styles': Path.join(__dirname, 'static', 'style')
         },
         extensions: ['', '.js', '.scss', '.json', '.jsx', '.css']
     },
@@ -52,7 +52,7 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 loaders: ['react-hot', 'babel-loader?presets[]=react,presets[]=es2015,presets[]=stage-0'],
-                include: [Path.join(__dirname, 'public', 'js')]
+                include: [Path.join(__dirname, 'static', 'js')]
             },
             //.css 文件使用 style-loader、 css-loader 和 autoprefixer-loader 来处理
             // style-loader:将css插入到页面的style标签,由于使用该loader会报错，故不用
