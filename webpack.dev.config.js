@@ -22,21 +22,19 @@ module.exports = {
     //获取项目入口js文件
     entry: {
         //添加入口，以及HMR inline
-        libs: webpackHMR.concat('./static/js/common.js'),
-        index: webpackHMR.concat('./static/js/index.js'),
-        admin: webpackHMR.concat('./static/js/admin.js')
+        index: webpackHMR.concat('./static/js/app.js')
     },
     output: {
         //文件输出目录
         path: Path.join(__dirname, 'build'),
         //用于配置文件发布路径，如CDN或本地服务器
-        publicPath: '/static/',
+        publicPath: '/build/',
         //根据入口文件输出的对应多个文件名
         filename: '[name].js'
     },
     resolve: {
         alias: {
-            'Styles': Path.join(__dirname, 'static', 'style')
+            'style': Path.join(__dirname, 'static', 'style')
         },
         extensions: ['', '.js', '.scss', '.json', '.jsx', '.css']
     },

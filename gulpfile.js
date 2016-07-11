@@ -19,7 +19,6 @@ gulp.task('webpack', function() {
  *    webpack-dev-server  *
  **************************/
 gulp.task('webpack-dev-server', function() {
-
     //start webpack develop server
     var webpackConfig = require('./webpack.dev.config');
     var WebpackDevServer = require('webpack-dev-server');

@@ -20,15 +20,13 @@ module.exports = {
     devtool: "source-map",
     //获取项目入口js文件
     entry: {
-        libs: './static/js/common.js',
-        index: './static/js/index.js',
-        admin: './static/js/admin.js'
+        index: './static/js/app.js'
     },
     output: {
         //文件输出目录
         path: Path.join(__dirname, 'build'),
         //用于配置文件发布路径，如CDN或本地服务器
-        publicPath: '/static/',
+        publicPath: '/build/',
         //根据入口文件输出的对应多个文件名
         filename: '[name].js'
         // filename: '[name]@[hash].js'
