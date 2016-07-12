@@ -8,12 +8,13 @@ var clean = require('gulp-clean');
 gulp.task('webpack', function() {
     var webpackConfig = require('./webpack.config');
     var gulpWebpack = require('gulp-webpack');
+    var dir = Path.join('static', 'build');
 
     return gulp
-        .src('build')
+        .src(dir)
         .pipe(clean())
         .pipe(gulpWebpack(webpackConfig))
-        .pipe(gulp.dest('./build'));
+        .pipe(dir);
 });
 /**************************
  *    webpack-dev-server  *
@@ -40,6 +41,20 @@ gulp.task('webpack-dev-server', function() {
     });
 });
 /**************************
+ *  webpack build libs    *
+ **************************/
+gulp.task('webpack-build-libs', function() {
+    var webpackConfig = require('./webpack.libs');
+    var gulpWebpack = require('gulp-webpack');
+    var dir = Path.join(__dirname, 'static', 'libs');
+
+    return gulp
+        .src(dir)
+        .pipe(clean())
+        .pipe(gulpWebpack(webpackConfig))
+        .pipe(dir);
+});
+/**************************
  *      copy profiles     *
  **************************/
 gulp.task('copyProfile', function() {
@@ -58,5 +73,6 @@ gulp.task('default', function() {
     console.info('demo');
 });
 gulp.task('dev', ['copyProfile', 'webpack-dev-server']);
+gulp.task('libs', ['webpack-build-libs']);
 gulp.task('beta', ['webpack']);
 gulp.task('prod', ['webpack']);

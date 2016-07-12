@@ -1,8 +1,3 @@
-window.React = require('react');
-window.ReactDOM = require('react-dom');
-window.ReactRouter = require('react-router');
-window.Antd = require('antd');
-
 import 'style/modules/pageA.scss';
 import Index from './modules/index';
 
