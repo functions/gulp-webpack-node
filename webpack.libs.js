@@ -9,17 +9,20 @@ var webpack = require('webpack');
 var Path = require('path');
 
 //提取css独立成文件
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var extractSCSS = new ExtractTextPlugin('[name].min.css');
 var ProgressPlugin = require('webpack/lib/ProgressPlugin');
+var libsPath = Path.join(__dirname, 'static', 'libs');
 
 module.exports = {
     //生成sourcemap,便于开发调试
     devtool: "source-map",
     //获取项目入口js文件
     entry: {
-        'react': './static/libs/react.js',
-        'react-dom': './static/libs/react-dom.js',
-        'react-router': './static/libs/react-router.js',
-        'antd': './static/libs/antd.js'
+        'react': libsPath + '/react.js',
+        'react-dom': libsPath + '/react-dom.js',
+        'react-router': libsPath + '/react-router.js',
+        'antd': libsPath + '/antd.js'
     },
     output: {
         //文件输出目录
@@ -63,6 +66,7 @@ module.exports = {
         new ProgressPlugin(function(percentage, msg) {
             console.log(parseInt(percentage * 100) + '%', msg);
         }),
+        extractSCSS,
         //js文件的压缩
         new webpack.optimize.UglifyJsPlugin({
             compress: {

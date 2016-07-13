@@ -10,11 +10,10 @@ gulp.task('webpack', function() {
     var gulpWebpack = require('gulp-webpack');
     var dir = Path.join('static', 'build');
 
-    return gulp
-        .src(dir)
-        .pipe(clean())
-        .pipe(gulpWebpack(webpackConfig))
-        .pipe(dir);
+    return gulp.src(dir)
+               .pipe(clean())
+               .pipe(gulpWebpack(webpackConfig))
+               .pipe(gulp.dest(dir));
 });
 /**************************
  *    webpack-dev-server  *
@@ -43,16 +42,20 @@ gulp.task('webpack-dev-server', function() {
 /**************************
  *  webpack build libs    *
  **************************/
-gulp.task('webpack-build-libs', function() {
-    var webpackConfig = require('./webpack.libs');
+gulp.task('clean-libs', function() {
+    var dir = Path.join('static', 'libs', '*.min.*');
+    return gulp.src(dir)
+               .pipe(clean());
+});
+gulp.task('webpack-build-libs', ['clean-libs'], function() {
+    var webpackConfig = require('./webpack.libs.js');
     var gulpWebpack = require('gulp-webpack');
-    var dir = Path.join(__dirname, 'static', 'libs');
+    var dir = Path.join('static', 'libs');
 
     return gulp
         .src(dir)
-        .pipe(clean())
         .pipe(gulpWebpack(webpackConfig))
-        .pipe(dir);
+        .pipe(gulp.dest(dir));
 });
 /**************************
  *      copy profiles     *
