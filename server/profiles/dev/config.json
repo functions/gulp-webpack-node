@@ -10,5 +10,5 @@
         "writeLog" : false
     },
 
-    "feUrl": "http://127.0.0.1:3000/"
+    "feUrl": "http://127.0.0.1:3000"
 }
