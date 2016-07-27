@@ -1,1 +1,0 @@
-window.ReactDOM = require('react-dom');

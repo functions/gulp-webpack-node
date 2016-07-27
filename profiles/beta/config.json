@@ -1,0 +1,18 @@
+{
+    "env": "beta",
+
+    "mysql": {
+        "host" : "localhost",
+        "user" : "root",
+        "password" : "root",
+        "database" : "testdb",
+        "port" : 3306,
+        "writeLog" : false
+    },
+
+    "feUrl": "",
+
+    "devServerUrl": "http://127.0.0.1:8888",
+
+    "appRun": 8888
+}

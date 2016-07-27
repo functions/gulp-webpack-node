@@ -1,10 +1,6 @@
-import 'style/modules/pageA.scss';
-import Index from './modules/index';
-
-var { Router ,Route, browserHistory, IndexRoute } = ReactRouter;
+import 'style/modules/moduleA.scss';
+import moduleA from './modules/moduleA';
 
 ReactDOM.render((
-    <Router history={browserHistory}>
-        <Route path="/" component={Index}></Route>
-    </Router>
+    
 ), document.querySelectorAll('.main')[0]);

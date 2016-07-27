@@ -50,7 +50,7 @@ var connect = {
     }
 };
 
-exports.query = function(sql, data) {
+exports.execSQL = function(sql, data) {
     return new Promise(function(resolve, reject){
         connect.mysql(CONNECT_CONFIG, sql, data, function(result){
             if (result.error) {

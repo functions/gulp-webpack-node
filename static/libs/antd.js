@@ -1,1 +1,0 @@
-window.Antd = require('antd');

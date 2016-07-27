@@ -6,13 +6,11 @@
  */
 'use strict'
 var webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var ProgressPlugin = require('webpack/lib/ProgressPlugin');
-var extractSCSS = new ExtractTextPlugin('[name].css');
 var Path = require('path');
 
 var webpackHMR = [
-    'webpack-dev-server/client?http://localhost:3000',
+    'webpack-dev-server/client?http://127.0.0.1:3000',
     'webpack/hot/dev-server'
 ];
 
@@ -22,13 +20,13 @@ module.exports = {
     //获取项目入口js文件
     entry: {
         //添加入口，以及HMR inline
-        index: webpackHMR.concat('./static/js/app.js')
+        app: webpackHMR.concat('./static/js/app.js')
     },
     output: {
         //文件输出目录
-        path: Path.join(__dirname, 'build'),
+        path: Path.join(__dirname, 'prd'),
         //用于配置文件发布路径，如CDN或本地服务器
-        publicPath: '/build/',
+        publicPath: '/prd/',
         //根据入口文件输出的对应多个文件名
         filename: '[name].js'
     },
@@ -40,11 +38,6 @@ module.exports = {
     },
     //各种加载器，即让各种文件格式可用require引用
     module: {
-        // preLoaders: [{
-        //     test: /\.jsx?$/,
-        //     exclude: /node_modules/,
-        //     loader: 'jsxhint'
-        // }],
         loaders: [
             //.js 或 .jsx 文件使用 babel-loader 来编译处理
             {
@@ -59,16 +52,15 @@ module.exports = {
                 test: /\.css$/,
                 loader: 'style!css!autoprefixer'
             },
-            //图片文件使用 url-loader 来处理，小于8kb的直接转为base64
             {
-                test: /\.(png|jpg)$/,
-                loader: 'url-loader?limit=8192'
+                test: /.(png|woff(2)?|eot|ttf|svg)(\?[a-z0-9=\.]+)?$/,
+                loader: 'url-loader?limit=100000'
             },
             //.scss 文件使用 style-loader、css-loader、autoprefixer 和 sass-loader 来编译处理
             {
                 test: /\.scss$/,
                 exclude: /node_modules/,
-                loader:  extractSCSS.extract('css!autoprefixer!sass?sourceMap')
+                loaders: ["style", "css?sourceMap", "autoprefixer", "sass?sourceMap"]
             },
             //.json 文件使用json-loader 来编译处理
             {
@@ -83,9 +75,8 @@ module.exports = {
         }),
         //提取公共脚本，默认只有一个入口时可以不用，否则需要额外引入common.js
         new webpack.optimize.CommonsChunkPlugin('common.js'),
-        extractSCSS,
         //增加公共头部
-        new webpack.BannerPlugin('Author by robin!'),
+        new webpack.BannerPlugin(),
         //增加HMR(模块热插拔)
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin()
